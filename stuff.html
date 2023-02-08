@@ -1,0 +1,115 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <style>
+            .title {
+                color:black;
+                font-size:50px;
+                font-family:cursive;
+                padding:5px;
+                animation: colorchange 3s infinite;
+            }
+            .text{
+                color:black;
+                font-size:30px;
+                font-family:cursive;
+                padding:20px;
+            }
+            .stuff {
+                color:black;
+                font-size:20px;
+                font-family:cursive;
+                padding:25px;
+            }
+            @keyframes colorchange{
+                0%{
+                    color:lime;
+                }
+                10%{
+                    color:cyan;
+                }
+                20%{
+                    color:purple;
+                }
+                30%{
+                    color:gold;
+                }
+                40%{
+                    color:rgb(0, 255, 242);
+                }
+                50%{
+                    color:yellow;
+                }
+                60%{
+                    color:cyan;
+                }
+                70%{
+                    color:lime;
+                }
+                80%{
+                    color:purple;
+                }
+                90%{
+                    color:cyan;
+                }
+                100%{
+                    color:lime;
+                }
+            }
+            .download{
+                color:black;
+                font-family:cursive;
+                font-size:20px;
+                background:gray;
+                border-radius:10px;
+                border:none;
+                outline:none;
+                text-align:center;
+            }
+        </style>
+        <div>
+            <button id="back" class="download" onclick="redirect('main.html')">Back</button>
+        </div>
+        <div id="title" class="title" align="center">
+            Welcome to Chevy's Stuff!
+        </div>
+        <div id="herestuff" class="text" align="center">
+            Here is my stuff you can download!
+        </div>
+        <div id="MaxedOutClickerGame" class="stuff" align="center">
+            Maxed out Clicker Game: <button id="MAXEDOUTCLICKERGME" class="download" onclick="downloadMAX()">Download</button>
+        </div>
+        <div id="HACKEDMaxedOutClickerGame" class="stuff" align="center">
+            HACKED Maxed out Clicker Game: <button id="HACKEDMAXEDOUTCLICKERGAME" class="download" onclick="downloadMAXHACKED()">Download</button>
+        </div>
+        <script>
+            function downloadMAX(){
+                var saveData = {score: 1000000000000000, upgradesOwned: [6000,6000,6,6,6000,6], add: 191102976, selectedOP: "Clickery", NME: ""};
+                var data = JSON.stringify(saveData);
+                var blob = new Blob([data], {type:"application/json"});
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                a.href = url;
+                a.download = "ChevysClickerGameSave.ccgsf";
+                a.click();
+            }
+            function downloadMAXHACKED(){
+                var saveData = {score: 1000000000000000, upgradesOwned: [10000,10000,7,7,10000,7], add: 382205952, selectedOP: "Clickery", NME: ""};
+                var data = JSON.stringify(saveData);
+                var blob = new Blob([data], {type:"application/json"});
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                a.href = url;
+                a.download = "ChevysClickerGameSave.ccgsf";
+                a.click();
+            }
+            function redirect(h){
+    var a = document.createElement("a");
+    a.href = h;
+    a.click();
+}
+        </script>
+    </body>
+</html>

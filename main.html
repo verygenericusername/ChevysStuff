@@ -1,0 +1,179 @@
+<html>
+<head>
+
+</head>
+<body>
+<style>
+.title {
+  color:black;
+  font-size:30px;
+  font-family:cursive;
+  text-shadow: 5px 0 green, 0 2px green, 2px 0 green, -2px 0 green;
+}
+.boxes {
+  height:50px;
+  border-radius:10px;
+  text-align:center;
+  font-family:cursive;
+}
+.show {
+  color:black;
+  text-align:center;
+  font-size:20px;
+  font-family:cursive;
+  border-radius:8px;
+  border:none;
+  background-color:darkgray;
+}
+.secret {
+    color:black;
+    text-align:center;
+    font-size:100px;
+    font-family:cursive;
+}
+.text{
+    color:black;
+    font-size:20px;
+    font-family:cursive;
+    padding:10px;
+}
+</style>
+<div id="title" class="title" align="center">
+Chevy's Stuff
+</div>
+<div id="typeinnotice" class="title" style="padding:35px;" align="center">
+Type in username and password:
+</div>
+<div align="center" id="text" class="text" style="display:none;">Incorrect Username Or Password.</div>
+<div align="center" style="padding:40px;">
+<input type="text" id="user" class="boxes" placeholder="Type Username">
+</div>
+<div align="center" style="padding:20px;">
+<input type="password" id="pass" class="boxes" placeholder="Type Password">
+</div>
+<div align="center">
+<button id="show" class="show" style="position:relative; right:-200px; top:-60px; left:150px;">
+Show
+</button>
+</div>
+<div align="center">
+<button id="Enter" class="show" style="font-size:50px;" onclick="check()">
+Enter
+</button>
+</div>
+<div id="secret" class="secret" style="display:none;">
+Chevy's Password is "twelveseventwofournine".
+</div>
+<div id="secret2" class="secret" style="display:none;">
+    N/A
+</div>
+<script>
+var showbtn = document.getElementById("show");
+var username = document.getElementById("user");
+var password = document.getElementById("pass");
+var userGood = false;
+var passwordGood = false;
+var checkk = false;
+var ready = false;
+let randomPassword = "";
+showbtn.addEventListener("click", function(){
+if(password.type === "password"){
+password.type = "text";
+showbtn.innerText = "Hide";
+}else{
+password.type = "password";
+showbtn.innerText = "Show";
+}
+});
+function redirect(h){
+    var a = document.createElement("a");
+    a.href = h;
+    a.click();
+}
+
+function check(){
+if(username.value == "admin"){
+userGood = true;
+}
+if(username.value == "Chevy"){
+userGood = true;
+}
+if(ready == true){
+    if(password.value == randomPassword){
+passwordGood = true;
+}
+}
+if(password.value == "twelveseventwofournine"){
+passwordGood = true;
+}
+if(userGood === true){
+if(passwordGood === true){
+checkk = true;
+}
+}
+if(checkk === true){
+    if(username.value == "Chevy"){
+        redirect("stuff2.html");
+    }else if(username.value == "admin"){
+        redirect("stuff.html");
+    }
+}else{
+    document.getElementById("text").style.display = "block";
+    setTimeout(function(){
+        document.getElementById("text").style.display = "none";
+    },2500);
+}
+}
+let code = "";
+let code2 = "";
+var code1Get = false;
+var code2get = false;
+const theCode = "whatischevyspassword";
+const theCode2 = "givemethepassword";
+var secret = document.getElementById("secret");
+var secret2 = document.getElementById("secret2");
+document.addEventListener("keydown", function(event){
+code += event.key;
+if(code == theCode){
+    secret.style.display = "block";
+    code = "";
+    setTimeout(function(){
+        secret.style.display = "none";
+    },1000);
+}else if(!theCode.startsWith(code)){
+    secret.style.display = "none";
+    code = "";
+}
+});
+document.addEventListener("keydown", function(event){
+code2 += event.key;
+if(code2 == theCode2){
+    secret2.innerHTML = "The Password Is: " + randomPassword;
+    secret2.style.display = "block";
+    code2 = "";
+    code2get = true;
+}else if(!theCode2.startsWith(code2)){
+    if(code2get == true){
+        setTimeout(function(){
+            secret2.style.display = "none";
+        },10000);
+    }else{
+        secret2.innerHTML = "N/A";
+    secret2.style.display = "none";
+    code2 = "";
+    }
+}
+});
+var stringLength = 10;
+window.onload = function(){
+var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers = "123456789";
+for(let i = 0; i < stringLength; i++){
+    const ran = Math.floor(Math.random() * 26);
+    randomPassword += letters[ran];
+}
+ready = true;
+};
+</script>
+</body>
+</html>
